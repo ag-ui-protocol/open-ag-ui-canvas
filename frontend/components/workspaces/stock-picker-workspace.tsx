@@ -20,7 +20,7 @@ interface ResearcherWorkspaceProps {
 
 
 
-export const StockPickerWorkspaceComponent = function ResearcherWorkspace({ isAgentActive }: ResearcherWorkspaceProps) {
+const StockPickerWorkspace = function ResearcherWorkspace({ isAgentActive }: ResearcherWorkspaceProps) {
   
 
 
@@ -34,12 +34,12 @@ export const StockPickerWorkspaceComponent = function ResearcherWorkspace({ isAg
           <CardHeader className="pb-4">
             <div className="flex items-center justify-between">
               <CardTitle className="text-xl">Stock Performance</CardTitle>
-              {isAgentActive && (
+              {/* {isAgentActive && (
                 <Badge variant="default" className="gap-1 animate-pulse">
                   <Lightbulb className="h-3 w-3" />
                   Agent Contributing
                 </Badge>
-              )}
+              )} */}
             </div>
           </CardHeader>
           <CardContent className="pb-4 flex-1 min-h-0 overflow-auto">
@@ -96,3 +96,10 @@ export const StockPickerWorkspaceComponent = function ResearcherWorkspace({ isAg
 
 
 
+function areEqual(prevProps: ResearcherWorkspaceProps, nextProps: ResearcherWorkspaceProps) {
+    return (
+      prevProps.isAgentActive === nextProps.isAgentActive
+    );
+  }
+  
+  export const StockPickerWorkspaceComponent = React.memo(StockPickerWorkspace, areEqual);
