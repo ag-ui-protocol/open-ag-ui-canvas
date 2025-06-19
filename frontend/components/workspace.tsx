@@ -8,6 +8,7 @@ import { HaikuWorkspace } from "@/components/workspaces/haiku-workspace"
 import type { AgentType } from "@/lib/types"
 import { AppSidebar } from "@/components/app-sidebar"
 import { useAgent } from "@/lib/agent-provider"
+import {StockPickerWorkspaceComponent} from "@/components/workspaces/stock-picker-workspace"
 import { useCoAgent, useCoAgentStateRender, useCopilotAction } from "@copilotkit/react-core"
 // import { Progress } from "@radix-ui/react-progress"
 import { Progress } from "@/components/progress"
@@ -79,6 +80,13 @@ export function Workspace({ selectedAgent, lastMessage }: WorkspaceProps) {
             setHaikus={setHaikus}
             selectedHaiku={selectedHaiku}
             setSelectedHaiku={setSelectedHaiku}
+          />
+        )
+      case "agnoAgent":
+        return (
+          <StockPickerWorkspaceComponent
+            isAgentActive = {isAgentActive}
+            setIsAgentActive={setIsAgentActive}
           />
         )
     }

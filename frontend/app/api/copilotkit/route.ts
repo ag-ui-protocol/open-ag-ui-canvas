@@ -5,12 +5,13 @@ import {
 } from "@copilotkit/runtime";
 import { NextRequest } from "next/server";
 import { MastraClient } from "@mastra/client-js";
+import { AgnoAgent } from "@ag-ui/agno"
 
 const serviceAdapter = new OpenAIAdapter();
 const runtime = new CopilotRuntime({
     remoteEndpoints: [
         {
-            url: process.env.REMOTE_ACTION_URL || "http://0.0.0.0:8000/copilotkit",
+            url: process.env.REMOTE_ACTION_URL || "http://0.0.0.0:8000/agui",
         }
     ]
 });
@@ -28,10 +29,25 @@ export const POST = async (req: NextRequest) => {
             // @ts-ignore
             agents: mastraAgents,
         });
-        let mastraRuntime = new CopilotRuntime({
-            // @ts-ignore
-            agents: mastraAgents,
+        const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
+            runtime,
+            serviceAdapter,
+            endpoint: "/api/copilotkit",
         });
+
+        return handleRequest(req);
+    }
+    else if (req.nextUrl.searchParams.get("isAgno")) {
+        const agents = {
+            investment_analyst: new AgnoAgent({
+                url: "http://localhost:8000/agui",
+                agentId: "investment_analyst"
+            })
+        }
+        let runtime = new CopilotRuntime({
+            // @ts-ignore for now
+            agents
+        })
         const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
             runtime,
             serviceAdapter,
@@ -41,7 +57,6 @@ export const POST = async (req: NextRequest) => {
         return handleRequest(req);
     }
     else {
-
         const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
             runtime,
             serviceAdapter,

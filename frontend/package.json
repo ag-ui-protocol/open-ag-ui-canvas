@@ -10,6 +10,7 @@
     "dev:agent": "mastra dev"
   },
   "dependencies": {
+    "@ag-ui/agno": "^0.0.1",
     "@ai-sdk/openai": "^1.3.22",
     "@copilotkit/react-core": "^1.8.14",
     "@copilotkit/react-ui": "^1.8.14",

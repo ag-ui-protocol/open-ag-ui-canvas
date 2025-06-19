@@ -22,6 +22,8 @@ aiohttp = ">=3.12.11,<4.0.0"
 html2text = ">=2025.4.15,<2026.0.0"
 crewai = "^0.130.0"
 tavily-python = "^0.7.6"
+agno = "1.6.3"
+yfinance= "0.2.63"
 
 [build-system]
 requires = ["poetry-core"]

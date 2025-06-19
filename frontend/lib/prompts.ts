@@ -1,7 +1,8 @@
 const initials = {
     mastra : "Hi, I am a Haiku agent. How can I help you today?",
     langgraph : "Hi, I am a Researcher agent. How can I help you today?",
-    crewai : "Hi, I am a Planner agent. How can I help you today?"
+    crewai : "Hi, I am a Planner agent. How can I help you today?",
+    agno : "Hi, I am a Stock picker agent. How can I help you today?"
 }
 
 export const suggestions = {

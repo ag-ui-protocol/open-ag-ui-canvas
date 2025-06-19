@@ -32,7 +32,7 @@ export function AppSidebar({ messages, addMessage, selectedAgent, setSelectedAge
         <CopilotChat
           labels={ 
             {
-              initial : pathname.includes("langgraph") ? initials.langgraph : pathname.includes("crewai") ? initials.crewai : initials.mastra
+              initial : pathname.includes("langgraph") ? initials.langgraph : pathname.includes("crewai") ? initials.crewai : pathname.includes("agno") ? initials.agno : initials.mastra
               }
             }
           className="h-full"
