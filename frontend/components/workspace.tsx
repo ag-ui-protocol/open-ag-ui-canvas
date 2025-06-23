@@ -12,6 +12,7 @@ import {StockPickerWorkspaceComponent} from "@/components/workspaces/stock-picke
 import { useCoAgent, useCoAgentStateRender, useCopilotAction } from "@copilotkit/react-core"
 // import { Progress } from "@radix-ui/react-progress"
 import { Progress } from "@/components/progress"
+import { LlamaWorkspaceComponent } from "./workspaces/llama-workspace"
 interface WorkspaceProps {
   selectedAgent: AgentType
   lastMessage: string
@@ -86,6 +87,13 @@ export function Workspace({ selectedAgent, lastMessage }: WorkspaceProps) {
         return (
           <StockPickerWorkspaceComponent
             isAgentActive = {isAgentActive}
+            setIsAgentActive={setIsAgentActive}
+          />
+        )
+      case "llamaAgent":
+        return (
+          <LlamaWorkspaceComponent
+            isAgentActive={isAgentActive}
             setIsAgentActive={setIsAgentActive}
           />
         )

@@ -13,52 +13,45 @@ import React from "react"
 import { Progress } from "@/components/progress"
 import { useCoAgent, useCoAgentStateRender, useCopilotAction, useCopilotChat } from "@copilotkit/react-core"
 
-interface ResearcherWorkspaceProps {
+interface LlamaWorkspaceProps {
   isAgentActive: boolean
   setIsAgentActive: (active: boolean) => void
 }
 
 
 
-const StockPickerWorkspace = function ResearcherWorkspace({ isAgentActive }: ResearcherWorkspaceProps) {
+const LlamaWorkspace = function LlamaWorkspace({ isAgentActive }: LlamaWorkspaceProps) {
   const [title, setTitle] = useState("")
 
   useCopilotAction({
-    name : "render_StockPerformance",
-    parameters : [
-      {
-        name : "stockData",
-        type : "object",
-        description : "The data of the stock performance",
-        attributes : [
-          {
-            name : "date",
-            type : "string",
-            description : "The date of the stock performance"
-          },
-          {
-            name : "closingPrice",
-            type : "number",
-            description : "The closing price of the stock"
-          }
-        ]
-      },
-      {
-        name : "summary",
-        type : "string",
-        description : "The summary of the stock performance"
-      }
-    ],
-    render : (props) => {
-      useEffect(() => {
-        setTitle("Stock Performance")
-      }, [])
-      useEffect(() => {
-        console.log(props)
-      }, [props])
-      return <div>Stock Performance</div>
-    }
+    name: "change_theme_color",
+    parameters: [{
+      name: "theme_color",
+      description: "The theme color to set. Make sure to pick nice colors.",
+      required: true, 
+    }],
+    handler({ theme_color }) {
+      console.log(theme_color)
+    },
+  });
+
+  type AgentState = {
+    proverbs: string[];
+  }
+
+  const {state, setState} = useCoAgent<AgentState>({
+    name: "llama_agent",
+    initialState: {
+      proverbs: [
+        "CopilotKit may be new, but its the best thing since sliced bread.",
+      ],
+    },
   })
+
+
+  useEffect(() => {
+    console.log(state)
+  }, [state])
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 h-full min-h-0">
@@ -130,10 +123,10 @@ const StockPickerWorkspace = function ResearcherWorkspace({ isAgentActive }: Res
 
 
 
-function areEqual(prevProps: ResearcherWorkspaceProps, nextProps: ResearcherWorkspaceProps) {
+function areEqual(prevProps: LlamaWorkspaceProps, nextProps: LlamaWorkspaceProps) {
     return (
       prevProps.isAgentActive === nextProps.isAgentActive
     );
   }
   
-  export const StockPickerWorkspaceComponent = React.memo(StockPickerWorkspace, areEqual);
+  export const LlamaWorkspaceComponent = React.memo(LlamaWorkspace, areEqual);

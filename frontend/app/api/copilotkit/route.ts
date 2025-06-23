@@ -5,6 +5,7 @@ import {
 } from "@copilotkit/runtime";
 import { NextRequest } from "next/server";
 import { MastraClient } from "@mastra/client-js";
+import { HttpAgent } from "@ag-ui/client";
 import { AgnoAgent } from "@ag-ui/agno"
 
 const serviceAdapter = new OpenAIAdapter();
@@ -38,15 +39,28 @@ export const POST = async (req: NextRequest) => {
         return handleRequest(req);
     }
     else if (req.nextUrl.searchParams.get("isAgno")) {
-        const agents = {
-            investment_analyst: new AgnoAgent({
-                url: "http://localhost:8000/agui",
-                agentId: "investment_analyst"
-            })
-        }
         let runtime = new CopilotRuntime({
-            // @ts-ignore for now
-            agents
+            agents: {
+                agno_agent: new AgnoAgent({
+                    url: "http://localhost:8000/agui",
+                })
+            }
+        })
+        const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
+            runtime,
+            serviceAdapter,
+            endpoint: "/api/copilotkit",
+        });
+
+        return handleRequest(req);
+    }
+    else if (req.nextUrl.searchParams.get("isLlama")) {
+        const runtime = new CopilotRuntime({
+            agents: {
+                llama_agent: new HttpAgent({
+                    url: "http://localhost:8000/run",
+                })
+            }
         })
         const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
             runtime,

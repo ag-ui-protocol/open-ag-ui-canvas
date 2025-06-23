@@ -12,7 +12,8 @@ const agents = [
   { id: "langgraphAgent", name: "Researcher - LangGraph" },
   { id: "crewaiAgent", name: "Planner - CrewAI" },
   { id: "haikuAgent", name: "Haiku - Mastra" },
-  { id: "agnoAgent", name : "Stock Picker - Agno"}
+  { id: "agnoAgent", name : "Stock Picker - Agno"},
+  {id : "llamaAgent", name : "Stock Picker - Llama"}
 ] as const
 
 

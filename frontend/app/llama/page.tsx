@@ -18,7 +18,7 @@ function CopilotKitWrapper() {
   const { currentAgent } = useAgent()
   return (
     <>
-      <CopilotKit runtimeUrl="/api/copilotkit?isAgno=true" agent="agno_agent">
+      <CopilotKit runtimeUrl="/api/copilotkit?isLlama=true" agent="llama_agent">
         <AppLayout />
       </CopilotKit>
     </>

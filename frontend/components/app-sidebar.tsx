@@ -11,7 +11,7 @@ import { AgentSelector } from "@/components/agent-selector"
 import type { AgentType } from "@/lib/types"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar"
 import { CopilotChat } from "@copilotkit/react-ui"
-import initials from "@/lib/prompts"
+import initials, { instructions } from "@/lib/prompts"
 import { useAgent } from "../lib/agent-provider"
 import { usePathname } from "next/navigation"
 
@@ -32,9 +32,12 @@ export function AppSidebar({ messages, addMessage, selectedAgent, setSelectedAge
         <CopilotChat
           labels={ 
             {
-              initial : pathname.includes("langgraph") ? initials.langgraph : pathname.includes("crewai") ? initials.crewai : pathname.includes("agno") ? initials.agno : initials.mastra
+              initial : pathname.includes("langgraph") ? initials.langgraph : pathname.includes("crewai") ? initials.crewai : pathname.includes("agno") ? initials.agno : pathname.includes("llama") ? initials.llama : initials.mastra
               }
             }
+          instructions={
+            pathname.includes("agno") ? instructions.agno : "You are a helpful assistant."
+          }
           className="h-full"
           Input={({onSend, inProgress}) => {
             useEffect(() => {
