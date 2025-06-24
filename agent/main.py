@@ -2,7 +2,7 @@
 from fastapi import FastAPI
 import os
 import uvicorn
-from copilotkit import CopilotKitSDK, LangGraphAgent
+from copilotkit import CopilotKitRemoteEndpoint, LangGraphAgent
 from copilotkit.crewai import CrewAIAgent
 
 from copilotkit.integrations.fastapi import add_fastapi_endpoint
@@ -11,7 +11,7 @@ from planner_crew import PlannerFlow
 
 app = FastAPI()
 
-sdk = CopilotKitSDK(
+sdk = CopilotKitRemoteEndpoint(
     agents=[
         LangGraphAgent(
             name="langgraphAgent",
