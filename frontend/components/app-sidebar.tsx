@@ -30,6 +30,7 @@ export function AppSidebar({ messages, addMessage, selectedAgent, setSelectedAge
     <>
       <div className="h-full">
         <CopilotChat
+        // AssistantMessage={}
           labels={ 
             {
               initial : pathname.includes("langgraph") ? initials.langgraph : pathname.includes("crewai") ? initials.crewai : pathname.includes("agno") ? initials.agno : pathname.includes("llama") ? initials.llama : initials.mastra

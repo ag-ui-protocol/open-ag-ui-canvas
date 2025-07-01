@@ -25,10 +25,11 @@ const StockPickerWorkspace = function ResearcherWorkspace({ isAgentActive }: Res
 
   useCopilotAction({
     name : "render_StockPerformance",
+    description : "Render the stock performance in a chart",
     parameters : [
       {
         name : "stockData",
-        type : "object",
+        type : "object[]",
         description : "The data of the stock performance",
         attributes : [
           {
@@ -42,11 +43,6 @@ const StockPickerWorkspace = function ResearcherWorkspace({ isAgentActive }: Res
             description : "The closing price of the stock"
           }
         ]
-      },
-      {
-        name : "summary",
-        type : "string",
-        description : "The summary of the stock performance"
       }
     ],
     render : (props) => {

@@ -2,13 +2,15 @@ import {
     CopilotRuntime,
     OpenAIAdapter,
     copilotRuntimeNextJSAppRouterEndpoint,
+    EmptyAdapter
 } from "@copilotkit/runtime";
 import { NextRequest } from "next/server";
 import { MastraClient } from "@mastra/client-js";
 import { HttpAgent } from "@ag-ui/client";
 import { AgnoAgent } from "@ag-ui/agno"
 
-const serviceAdapter = new OpenAIAdapter();
+
+const serviceAdapter = new EmptyAdapter();
 const runtime = new CopilotRuntime({
     remoteEndpoints: [
         {

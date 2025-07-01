@@ -7,20 +7,12 @@ from agno.agent.agent import Agent
 from agno.app.agui.app import AGUIApp
 from agno.models.openai import OpenAIChat
 from agno.tools.yfinance import YFinanceTools
-from agno.workflow.workflow import Workflow
 from dotenv import load_dotenv
-from copilotkit import CopilotKitState
 from pydantic import BaseModel
 
 import yfinance as yf
 from agno.tools import tool
 load_dotenv()
-
-class AgentState(CopilotKitState):
-    """
-    This is the state of the agent.
-    It is a subclass of the MessagesState class from langgraph.
-    """
 
 class stockData(BaseModel):
     date : str
@@ -50,7 +42,7 @@ def render_StockPerformance(stockData : list[stockData], summary : str):
     """
     This tool is used to render the stock performance of a Company's stock over a period of time
     """
-    print(stockData,"dasfhijsfhbjoiewfdieo")
+    print(stockData)
     yield {
         "stockData" : stockData,
         "summary" : summary
